@@ -2,6 +2,22 @@ import { endpoints } from "./endpoints";
 
 let cachedLocationPromise: Promise<string> | undefined = undefined;
 
+/**
+ * Get the location of the user based on the Cloudflare network.
+ * @param options Options for the request.
+ * @param options.timeout The timeout for the request in milliseconds. Defaults to 5000.
+ * @param options.cache Whether to cache the result of the request. Defaults to false.
+ * @returns The location of the user.
+ * @throws {DOMException} If the location could not be found.
+ * @throws {AggregateError} If all requests timed out.
+ * @example
+ * ```js
+ * import getCloudflareLocation from "get-cloudflare-location";
+ *
+ * const location = await getCloudflareLocation();
+ * console.log(location);
+ * ```
+*/
 export async function getCloudflareLocation(options?: {
   timeout?: number;
   cache?: boolean;
