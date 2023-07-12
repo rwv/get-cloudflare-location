@@ -1,7 +1,7 @@
 {
   "name": "get-cloudflare-location",
   "version": "1.0.1",
-  "description": "",
+  "description": "A JavaScript function to get user's location based on Cloudflare /cdn-cgi/trace",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
