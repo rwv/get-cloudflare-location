@@ -1,1 +1,1 @@
-export { getCloudflareLocation as default } from "./location";
+export { getCloudflareLocation as default } from './location'

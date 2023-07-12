@@ -1,6 +1,6 @@
-import { endpoints } from "./endpoints";
+import { endpoints } from './endpoints'
 
-let cachedLocationPromise: Promise<string> | undefined = undefined;
+let cachedLocationPromise: Promise<string> | undefined
 
 /**
  * Get the location of the user based on the Cloudflare network.
@@ -18,42 +18,42 @@ let cachedLocationPromise: Promise<string> | undefined = undefined;
  * console.log(location);
  * ```
 */
-export async function getCloudflareLocation(options?: {
-  timeout?: number;
-  cache?: boolean;
+export async function getCloudflareLocation (options?: {
+  timeout?: number
+  cache?: boolean
 }): Promise<string> {
-  if (options?.cache && cachedLocationPromise) {
-    return await cachedLocationPromise;
+  if (options?.cache === true && (cachedLocationPromise != null)) {
+    return await cachedLocationPromise
   }
 
-  const controller = new AbortController();
+  const controller = new AbortController()
   // add timeout
-  setTimeout(() => controller.abort(), options?.timeout ?? 5000);
+  setTimeout(() => { controller.abort() }, options?.timeout ?? 5000)
 
-  const locationPromises = endpoints.map((endpoint) =>
-    getCloudflareLocationFromEndpoint(endpoint, controller.signal)
-  );
+  const locationPromises = endpoints.map(async (endpoint) =>
+    await getCloudflareLocationFromEndpoint(endpoint, controller.signal)
+  )
 
-  const location = Promise.any(locationPromises);
+  const location = Promise.any(locationPromises)
 
-  if (options?.cache) {
-    cachedLocationPromise = location;
+  if (options?.cache === true) {
+    cachedLocationPromise = location
   }
 
-  return await location;
+  return await location
 }
 
-async function getCloudflareLocationFromEndpoint(
+async function getCloudflareLocationFromEndpoint (
   endpoint: string,
   signal: AbortSignal
 ): Promise<string> {
-  const response = await fetch(endpoint, { signal });
-  const text = await response.text();
-  const loc = text.split("\n").find((line) => line.startsWith("loc="));
+  const response = await fetch(endpoint, { signal })
+  const text = await response.text()
+  const loc = text.split('\n').find((line) => line.startsWith('loc='))
 
   if (loc === undefined) {
-    throw new DOMException("Location not found");
+    throw new DOMException('Location not found')
   }
 
-  return loc.split("=")[1];
+  return loc.split('=')[1]
 }
