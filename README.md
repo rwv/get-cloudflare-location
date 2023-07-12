@@ -1,6 +1,10 @@
 # ☁️ get-cloudflare-location
 A JavaScript function to get user's location based on Cloudflare `/cdn-cgi/trace`
 
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/rwv/get-cloudflare-location/build.yml)](https://github.com/rwv/get-cloudflare-location/actions/workflows/build.yml)
+[![npm](https://img.shields.io/npm/v/get-cloudflare-location)](https://www.npmjs.com/package/get-cloudflare-location)
+![NPM](https://img.shields.io/npm/l/get-cloudflare-location)
+
 ## How it works
 
 This function will send a request to `https://www.cloudflare.com/cdn-cgi/trace` and `https://cf-ns.com/cdn-cgi/trace` and parse the response to get the user's location.
