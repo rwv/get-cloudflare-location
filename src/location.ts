@@ -38,13 +38,17 @@ export async function getCloudflareLocation (options?: GetCloudflareLocationOpti
     await getCloudflareLocationFromEndpoint(endpoint, controller.signal)
   )
 
-  const location = Promise.any(locationPromises)
+  const locationPromise = Promise.any(locationPromises)
 
   if (cache) {
-    cachedLocationPromise = location
+    cachedLocationPromise = locationPromise
   }
 
-  return await location
+  const location = await locationPromise
+
+  controller.abort()
+
+  return location
 }
 
 async function getCloudflareLocationFromEndpoint (
