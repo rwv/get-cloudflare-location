@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "build": "npm run build:types && npm run build:js",
-    "build:types": "tsc  --declaration --emitDeclarationOnly",
+    "build:types": "tsc --declaration --emitDeclarationOnly",
     "build:js": "esbuild src/index.ts --bundle --format=esm --target=es2017 --outfile=dist/index.js",
     "lint": "eslint src/**/*.ts --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
