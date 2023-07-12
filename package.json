@@ -2,11 +2,19 @@
   "name": "get-cloudflare-location",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "type": "module",
   "scripts": {
+    "build": "npm run build:types && npm run build:js",
+    "build:types": "tsc  --declaration --emitDeclarationOnly",
+    "build:js": "esbuild src/index.ts --bundle --format=esm --target=es6 --outfile=dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.18.11",
+    "typescript": "^5.1.6"
+  }
 }
