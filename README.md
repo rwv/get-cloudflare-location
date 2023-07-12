@@ -16,12 +16,12 @@ import getCloudflareLocation from "get-cloudflare-location";
 
 interface GetCloudflareLocationOptions {
   timeout?: number; // The timeout for the request in milliseconds. Defaults to 5000
-  cache?: string; // Whether to cache the result of the request. Defaults to false.
+  cache?: string; // Whether to cache the result of the request. Defaults to true.
 }
 
 const options: GetCloudflareLocationOptions | undefined = {
   timeout: 5000,
-  cache: false,
+  cache: true,
 };
 
 const location = await getCloudflareLocation(options);

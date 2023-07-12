@@ -11,7 +11,7 @@ export interface GetCloudflareLocationOptions {
  * Get the location of the user based on the Cloudflare network.
  * @param options Options for the request.
  * @param options.timeout The timeout for the request in milliseconds. Defaults to 5000.
- * @param options.cache Whether to cache the result of the request. Defaults to false.
+ * @param options.cache Whether to cache the result of the request. Defaults to true.
  * @returns The location of the user.
  * @throws {DOMException} If the location could not be found.
  * @throws {AggregateError} If all requests timed out.
@@ -24,7 +24,9 @@ export interface GetCloudflareLocationOptions {
  * ```
 */
 export async function getCloudflareLocation (options?: GetCloudflareLocationOptions): Promise<string> {
-  if (options?.cache === true && (cachedLocationPromise != null)) {
+  const cache: boolean = options?.cache === undefined ? true : options.cache
+
+  if (cache && (cachedLocationPromise != null)) {
     return await cachedLocationPromise
   }
 
@@ -38,7 +40,7 @@ export async function getCloudflareLocation (options?: GetCloudflareLocationOpti
 
   const location = Promise.any(locationPromises)
 
-  if (options?.cache === true) {
+  if (cache) {
     cachedLocationPromise = location
   }
 
