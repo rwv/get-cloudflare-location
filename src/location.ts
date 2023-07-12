@@ -2,6 +2,11 @@ import { endpoints } from './endpoints'
 
 let cachedLocationPromise: Promise<string> | undefined
 
+export interface GetCloudflareLocationOptions {
+  timeout?: number
+  cache?: boolean
+}
+
 /**
  * Get the location of the user based on the Cloudflare network.
  * @param options Options for the request.
@@ -18,10 +23,7 @@ let cachedLocationPromise: Promise<string> | undefined
  * console.log(location);
  * ```
 */
-export async function getCloudflareLocation (options?: {
-  timeout?: number
-  cache?: boolean
-}): Promise<string> {
+export async function getCloudflareLocation (options?: GetCloudflareLocationOptions): Promise<string> {
   if (options?.cache === true && (cachedLocationPromise != null)) {
     return await cachedLocationPromise
   }

@@ -14,12 +14,12 @@ npm install get-cloudflare-location
 ``` ts
 import getCloudflareLocation from "get-cloudflare-location";
 
-interface Options {
+interface GetCloudflareLocationOptions {
   timeout?: number; // The timeout for the request in milliseconds. Defaults to 5000
   cache?: string; // Whether to cache the result of the request. Defaults to false.
 }
 
-const options: Options | undefined = {
+const options: GetCloudflareLocationOptions | undefined = {
   timeout: 5000,
   cache: false,
 };
