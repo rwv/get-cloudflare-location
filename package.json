@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc  --declaration --emitDeclarationOnly",
-    "build:js": "esbuild src/index.ts --bundle --format=esm --target=es6 --outfile=dist/index.js",
+    "build:js": "esbuild src/index.ts --bundle --format=esm --target=es2017 --outfile=dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
