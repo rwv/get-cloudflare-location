@@ -7,6 +7,7 @@
   "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
+    "prepublishOnly": "npm run build",
     "build": "npm run build:types && npm run build:js",
     "build:types": "tsc --declaration --emitDeclarationOnly",
     "build:js": "esbuild src/index.ts --bundle --format=esm --target=es2017 --outfile=dist/index.js",
