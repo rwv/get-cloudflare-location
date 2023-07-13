@@ -31,6 +31,9 @@ const options: GetCloudflareLocationOptions | undefined = {
 const location = await getCloudflareLocation(options);
 ```
 
+## cf-ns.com
+
+`cf-ns.com` is the domain of the Cloudflare China Network, allowing users in mainland China to get location in low latency.
 
 ## License
 
