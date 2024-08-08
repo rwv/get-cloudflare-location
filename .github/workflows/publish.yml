@@ -1,8 +1,8 @@
 name: Publish NPM Package
 
 on:
-    release:
-      types: [created]
+  release:
+    types: [created]
 
 jobs:
   publish-npm:
@@ -19,7 +19,6 @@ jobs:
       - uses: pnpm/action-setup@v3
         name: Install pnpm
         with:
-          version: 8
           run_install: false
 
       - name: Get pnpm store directory
