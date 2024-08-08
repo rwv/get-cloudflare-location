@@ -1,10 +1,10 @@
-import { endpoints } from './endpoints'
+import { endpoints } from "./endpoints";
 
-let cachedLocationPromise: Promise<string> | undefined
+let cachedLocationPromise: Promise<string> | undefined;
 
 export interface GetCloudflareLocationOptions {
-  timeout?: number
-  cache?: boolean
+  timeout?: number;
+  cache?: boolean;
 }
 
 /**
@@ -22,46 +22,51 @@ export interface GetCloudflareLocationOptions {
  * const location = await getCloudflareLocation();
  * console.log(location);
  * ```
-*/
-export async function getCloudflareLocation (options?: GetCloudflareLocationOptions): Promise<string> {
-  const cache: boolean = options?.cache === undefined ? true : options.cache
+ */
+export async function getCloudflareLocation(
+  options?: GetCloudflareLocationOptions,
+): Promise<string> {
+  const cache: boolean = options?.cache === undefined ? true : options.cache;
 
-  if (cache && (cachedLocationPromise != null)) {
-    return await cachedLocationPromise
+  if (cache && cachedLocationPromise != null) {
+    return await cachedLocationPromise;
   }
 
-  const controller = new AbortController()
+  const controller = new AbortController();
   // add timeout
-  setTimeout(() => { controller.abort() }, options?.timeout ?? 5000)
+  setTimeout(() => {
+    controller.abort();
+  }, options?.timeout ?? 5000);
 
-  const locationPromises = endpoints.map(async (endpoint) =>
-    await getCloudflareLocationFromEndpoint(endpoint, controller.signal)
-  )
+  const locationPromises = endpoints.map(
+    async (endpoint) =>
+      await getCloudflareLocationFromEndpoint(endpoint, controller.signal),
+  );
 
-  const locationPromise = Promise.any(locationPromises)
+  const locationPromise = Promise.any(locationPromises);
 
   if (cache) {
-    cachedLocationPromise = locationPromise
+    cachedLocationPromise = locationPromise;
   }
 
-  const location = await locationPromise
+  const location = await locationPromise;
 
-  controller.abort()
+  controller.abort();
 
-  return location
+  return location;
 }
 
-async function getCloudflareLocationFromEndpoint (
+async function getCloudflareLocationFromEndpoint(
   endpoint: string,
-  signal: AbortSignal
+  signal: AbortSignal,
 ): Promise<string> {
-  const response = await fetch(endpoint, { signal })
-  const text = await response.text()
-  const loc = text.split('\n').find((line) => line.startsWith('loc='))
+  const response = await fetch(endpoint, { signal });
+  const text = await response.text();
+  const loc = text.split("\n").find((line) => line.startsWith("loc="));
 
   if (loc === undefined) {
-    throw new DOMException('Location not found')
+    throw new DOMException("Location not found");
   }
 
-  return loc.split('=')[1]
+  return loc.split("=")[1];
 }

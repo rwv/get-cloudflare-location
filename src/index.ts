@@ -1,2 +1,2 @@
-export { getCloudflareLocation as default } from './location'
-export type { GetCloudflareLocationOptions } from './location'
+export { getCloudflareLocation as default } from "./location";
+export type { GetCloudflareLocationOptions } from "./location";

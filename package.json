@@ -13,7 +13,7 @@
     "build:types": "tsc --declaration --emitDeclarationOnly",
     "build:js": "esbuild src/index.ts --bundle --format=esm --target=es2017 --outfile=dist/index.js",
     "lint": "eslint src/**/*.ts --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write src/**/*.ts"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +23,7 @@
     "@types/eslint__js": "^8.42.3",
     "esbuild": "^0.23.0",
     "eslint": "^8.57.0",
+    "prettier": "^3.3.3",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.0.1"
   }
