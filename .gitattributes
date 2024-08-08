@@ -1,0 +1,9 @@
+# Explicitly set LF as the line ending for all text files
+* text eol=lf
+
+# Binary files should be left untouched
+*.jpg binary
+*.png binary
+*.gif binary
+*.zip binary
+*.exe binary
