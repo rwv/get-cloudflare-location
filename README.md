@@ -1,4 +1,5 @@
 # ☁️ get-cloudflare-location
+
 A JavaScript function to get user's location based on Cloudflare `/cdn-cgi/trace`
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/rwv/get-cloudflare-location/build.yml)](https://github.com/rwv/get-cloudflare-location/actions/workflows/build.yml)
@@ -11,11 +12,11 @@ This function will send a request to `https://www.cloudflare.com/cdn-cgi/trace` 
 
 ## Usage
 
-``` bash
+```bash
 npm install get-cloudflare-location
 ```
 
-``` ts
+```ts
 import getCloudflareLocation from "get-cloudflare-location";
 
 interface GetCloudflareLocationOptions {

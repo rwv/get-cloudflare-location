@@ -13,7 +13,7 @@
     "build:types": "tsc --declaration --emitDeclarationOnly",
     "build:js": "esbuild src/index.ts --bundle --format=esm --target=es2017 --outfile=dist/index.js",
     "lint": "eslint src/**/*.ts --fix",
-    "format": "prettier --write src/**/*.ts",
+    "format": "prettier --write .",
     "prepare": "husky"
   },
   "keywords": [],
@@ -35,6 +35,9 @@
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": [
       "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml}": [
       "prettier --write"
     ]
   }
