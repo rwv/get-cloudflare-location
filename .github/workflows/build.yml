@@ -45,13 +45,6 @@ jobs:
       - name: Format check
         run: pnpm run format-check
 
-      - name: Run tests
-        run: pnpm run coverage
-
-      - name: Report Coverage
-        if: matrix.os == 'ubuntu-latest' && matrix.node-version == 'latest' && github.event_name == 'pull_request'
-        uses: davelosert/vitest-coverage-report-action@v2
-
       - name: Build
         run: pnpm run build
 

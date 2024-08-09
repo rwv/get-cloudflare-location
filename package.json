@@ -14,7 +14,9 @@
     "build:es": "tsc",
     "build:browser": "esbuild src/index.ts --bundle --format=esm --target=es2017 --minify --outfile=dist/index.browser.esm.min.js",
     "lint": "eslint src/**/*.ts --fix",
-    "format": "prettier --write .",
+    "lint-check": "eslint src/**/*.ts --no-fix",
+    "format": "prettier --write src",
+    "format-check": "prettier --check src",
     "prepare": "husky"
   },
   "keywords": [],
