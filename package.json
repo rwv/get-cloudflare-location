@@ -5,13 +5,14 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "browser": "dist/index.browser.esm.min.js",
   "type": "module",
   "packageManager": "pnpm@9.6.0",
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "npm run build:types && npm run build:js",
-    "build:types": "tsc --declaration --emitDeclarationOnly",
-    "build:js": "esbuild src/index.ts --bundle --format=esm --target=es2017 --outfile=dist/index.js",
+    "build": "npm run build:es && npm run build:browser",
+    "build:es": "tsc",
+    "build:browser": "esbuild src/index.ts --bundle --format=esm --target=es2017 --minify --outfile=dist/index.browser.esm.min.js",
     "lint": "eslint src/**/*.ts --fix",
     "format": "prettier --write .",
     "prepare": "husky"
@@ -40,5 +41,9 @@
     "*.{json,md,yml}": [
       "prettier --write"
     ]
-  }
+  },
+  "files": [
+    "dist",
+    "src"
+  ]
 }
