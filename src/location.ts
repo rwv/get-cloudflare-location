@@ -64,6 +64,7 @@ async function getCloudflareLocationFromEndpoint(
   const text = await response.text();
   const loc = text.split("\n").find((line) => line.startsWith("loc="));
 
+  /* v8 ignore next 3 */
   if (loc === undefined) {
     throw new DOMException("Location not found");
   }
