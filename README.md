@@ -1,5 +1,8 @@
 # ☁️ get-cloudflare-location
 
+> [!CAUTION]  
+> `https://cf-ns.com/cdn-cgi/trace` returns `404 Not Found` now. **Don't** use this package!
+
 A JavaScript function to get user's location based on Cloudflare `/cdn-cgi/trace`
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/rwv/get-cloudflare-location/build.yml)](https://github.com/rwv/get-cloudflare-location/actions/workflows/build.yml)
